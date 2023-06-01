@@ -1,0 +1,18 @@
+<!-- 6. login.html 작성 -->
+<!-- layout.html을 확장하여, 
+layout.html의 「{% block body %}{% endblock %}」사이에 
+9~20행까지의 내용을 삽입 -->
+{% extends "layout.html" %}
+{% block body %}
+<form action="/login" method=post>
+    <div class="form-group">
+        <label for="InputTitle">ユーザー名</label>
+        <input type="text" class="form-control" id="InputTitle" name=username>
+    </div>
+    <div class="form-group">
+        <label for="InputPassword">パスワード</label>
+        <input type="password" name="password" id="InputPassword" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">ログイン</button>
+</form>
+{% endblock %}
