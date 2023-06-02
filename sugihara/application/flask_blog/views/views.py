@@ -1,11 +1,7 @@
 from flask_blog import app      #appをインポート
 from flask import request,redirect,url_for,render_template,flash,session    #Flaskのパッケージをインポート
 
-@app.route('/')     #urlにリクエストがあった際に以下の処理を実行
-def show_entries():
-    if not session.get('logged_in'):
-        return redirect(url_for('login'))
-    return render_template('entries/index.html')
+
 
 @app.route('/login', methods=['GET','POST'])
 def login():
