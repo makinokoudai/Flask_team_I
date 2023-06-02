@@ -8,11 +8,14 @@ def entries():
 @app.route('/result', methods=['POST'])
 def result():
     if request.method == 'POST':
+    
+        if request.form['salary'] == '':
+            flash("給与が未入力です。入力してください。")
+            redirect(url_for('entries'))
+
         salary = int(request.form['salary'])
-        if str(salary) == '':
-            flash("値が未入力です。入力してください。")
-            return redirect(url_for('entries'))
-        elif salary < 0:
+
+        if salary < 0:
             flash("給与にはマイナスの値は入力できません。")
             return redirect(url_for('entries'))
         elif len(str(salary)) > 10:
