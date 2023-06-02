@@ -1,0 +1,5 @@
+{% extends "layout.html" %}
+{% block body %}
+<p>{% print("給与：{:,}円の場合、支給額：{:,}円、税額：{:,}円です".format(salary_d,pay_amount_d,tax_d)) %}</p>
+<a class="btn btn-primary" href="{{url_for('input_salary')}}" role="button">戻る</a>
+{% endblock %}
