@@ -1,2 +1,2 @@
 DEBUG=True
-SECRET_KEY='secret key'
+SECRET_KEY='secret key' 

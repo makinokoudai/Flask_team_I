@@ -25,7 +25,7 @@ def output():
             return redirect(url_for("input"))
         
         session.pop('input_data', None)  
-        if salary > 1000000:
+        if salary > 1000000: 
             tax_amount = int((salary - 1000000) * 0.2 + (1000000 * 0.1))
         else:
             tax_amount = int(salary * 0.1)
