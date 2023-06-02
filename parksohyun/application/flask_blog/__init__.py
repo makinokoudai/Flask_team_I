@@ -1,5 +1,4 @@
 # 1. init.py(어플리케이션 본체 파일)작성
-
 from flask import Flask
 
 # flask의 어플리케이션 본체를 작성

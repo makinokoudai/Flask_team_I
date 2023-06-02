@@ -8,7 +8,7 @@ from flask_blog import app
 @app.route('/')
 def show_entries():
     if not session.get('logged_in'):
-        return redirect('/login')
+        return redirect(url_for('login'))
     # 5) templates 폴더 이하에 있는 entries/index.html를 반환해 렌더링해 준다
     # 경로에 templates를 지정하지 않은 이유는, 
     # templates 폴더 이하에 자동으로 html파일이 있는 것을 인식해 주기 때문
@@ -27,13 +27,13 @@ def show_entries():
 def login():
     if request.method == 'POST':
         if request.form['username'] != app.config['USERNAME']:
-            print('Username is not correct')
+            flash('Username is not correct')
         elif request.form['password'] != app.config['PASSWORD']:
-            print('Password is not correct')
+            flash('Password is not correct')
         else:
             session['logged_in'] = True
-            # 올바를 때는, /로 리다이렉트시키고, 
-            return redirect('/')
+            flash('ログインしました')
+            return redirect(url_for('show_entries'))
     # 그렇지 않으면 render_template('login.html')만이 실행
     # GET의 경우, /login을 클릭했을 때는 이 처리를 통과하지 않으므로
     # render=template('login.html')만이 실행되어, 로그인 폼이 표시됨
@@ -43,4 +43,5 @@ def login():
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
-    return redirect('/')
+    flash('ログアウトしました')
+    return redirect(url_for('show_entries'))
