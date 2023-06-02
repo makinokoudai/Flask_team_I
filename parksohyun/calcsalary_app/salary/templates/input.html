@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+<!--데이터를 써서 views의 어느 함수를 작동시킬 지 url_for에 작성-->
+<form action="{{url_for('show_output')}}" method="post">
+    <div class="form-group">
+        <label for="InputTitle">給与</label>
+        <input type="number" class="form-control" id="InputTitle" name=salary>
+    </div>
+
+    <button type="submit" class="btn btn-primary">計算</button>
+</form>
+{% endblock %}

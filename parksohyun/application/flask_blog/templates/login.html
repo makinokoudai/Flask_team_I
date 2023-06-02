@@ -5,7 +5,7 @@
     9~20행까지의 내용을 삽입
 #}
 {% extends "layout.html" %}{% block body %}
-<form action="{{url_for('login')}}" method="post"> <!--<form action="{{url_for('login')}" method="post">}-->
+<form action="{{url_for('login')}}" method="post">
     <div class="form-group">
         <label for="InputTitle">ユーザー名</label>
         <input type="text" class="form-control" id="InputTitle" name=username>
