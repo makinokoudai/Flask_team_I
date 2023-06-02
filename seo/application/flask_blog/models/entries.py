@@ -9,7 +9,7 @@ class Entry(db.Model):
     created_at = db.Column(db.DateTime)
 
     def __init__(self, title=None, text=None):
-        self.tetle = title
+        self.title = title
         self.text = text
         self.created_at = datetime.utcnow()
 

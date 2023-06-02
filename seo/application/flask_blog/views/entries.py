@@ -7,7 +7,8 @@ from flask_blog import db
 def show_entries():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
-    return render_template('entries/index.html')
+    entries = Entry.query.order_by(Entry.id.desc()).all()
+    return render_template('entries/index.html', entries=entries)
 
 @app.route('/entries/new', methods=['GET'])  # 新規投稿画面に遷移
 def new_entry():
