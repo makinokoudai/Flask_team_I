@@ -4,19 +4,6 @@
 from flask import request, redirect, url_for, render_template, flash, session # 이용할 flask 관련 패키지를 임포트한다
 from flask_blog import app
 
-# URL에 액세스가 있었을 때만 
-@app.route('/')
-def show_entries():
-    if not session.get('logged_in'):
-        return redirect(url_for('login'))
-    # 5) templates 폴더 이하에 있는 entries/index.html를 반환해 렌더링해 준다
-    # 경로에 templates를 지정하지 않은 이유는, 
-    # templates 폴더 이하에 자동으로 html파일이 있는 것을 인식해 주기 때문
-    # flask에서는, html파일은 templates 폴더아래 작성된다는 룰로 되어있다고 기억할 것
-    return render_template('entries/index.html')
-
-# 이 파일에서는, http://127.0.0.1:5000/에 리퀘스트가 있었을 때 처리
-
 # /login이라는 URL에 리퀘스트가 있을 때 루팅 처리
 # 메소드를 지정하는 것으로, 그 URL에 대한 HTTP 메소드를 제한하는 것이 가능
 # 미지정 시, GET 메소드만 허가된다
