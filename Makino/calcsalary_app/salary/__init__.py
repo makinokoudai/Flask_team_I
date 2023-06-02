@@ -1,0 +1,8 @@
+from flask import Flask
+
+app = Flask(__name__)
+app.config.from_object("salary.config")
+
+from salary.views import views
+# import salary.views.views
+
