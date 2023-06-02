@@ -5,13 +5,13 @@ from salary import app
 def entries():
     return render_template('entries/index.html')
 
-@app.route('/result', methods=['POST'])
+@app.route('/result', methods=['GET', 'POST'])
 def result():
     if request.method == 'POST':
     
         if request.form['salary'] == '':
             flash("給与が未入力です。入力してください。")
-            redirect(url_for('entries'))
+            return redirect(url_for('entries'))
 
         salary = int(request.form['salary'])
 
