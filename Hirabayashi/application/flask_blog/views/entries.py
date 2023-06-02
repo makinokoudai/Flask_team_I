@@ -7,6 +7,7 @@ from flask_blog import db
 def show_entries():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
+    
     entries = Entry.query.order_by(Entry.id.desc()).all()
     return render_template('entries/index.html', entries=entries)
 
@@ -14,12 +15,14 @@ def show_entries():
 def new_entry():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
+    
     return render_template('entries/new.html')
 
 @app.route('/entries', methods=['POST'])
 def add_entry():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
+    
     entry = Entry(
         title = request.form['title'],
         text= request.form['text']
@@ -33,5 +36,6 @@ def add_entry():
 def show_entry(id):
     if not session.get('logged_in'):
         return redirect(url_for('login'))
+    
     entry = Entry.query.get(id)
     return render_template('entries/show.html', entry=entry)
