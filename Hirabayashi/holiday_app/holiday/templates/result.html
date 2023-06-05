@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+<p>処理結果</p>
+{% if crud_kind == 'insert' %}
+    <p>{{ holi_date}}（{{ holi_text }}）が登録されました</p>
+{% elif crud_kind == 'update' %}
+    <p>{{ holi_date }}は「{{ holi_text }}」に更新されました</p>
+{% elif crud_kind == 'delete' %}
+    <p>{{ holi_date}}（{{ holi_text }}）は削除されました</p>
+{% endif %}
+<a href="{{url_for('input_holiday')}}" class="btn btn-primary" role="button" data-bs-toggle="button">戻る</a>
+{% endblock %}
