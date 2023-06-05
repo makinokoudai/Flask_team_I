@@ -20,3 +20,4 @@ def logout():
     session.pop('logged_in', None)
     flash("ログアウトしました")
     return redirect(url_for('show_entries'))
+
