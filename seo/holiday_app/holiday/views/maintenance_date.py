@@ -13,4 +13,4 @@ def add_input():
     db.session.commit()
     flash('祝日が追加されました')
 
-    return render_template(url_for('result.html'))
+    return render_template('result.html')

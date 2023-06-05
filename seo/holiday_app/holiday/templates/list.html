@@ -2,4 +2,21 @@
 
 {% block body %}
 
+<table class="table">
+    <thead class="table-primary">
+        <tr>
+            <th>祝日</th>
+            <th>テキスト</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for h in holiday %}
+        <tr>
+            <td>{{h.holi_date}}</td>
+            <td>{{h.holi_text}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
 {% endblock %}
