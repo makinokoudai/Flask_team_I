@@ -12,9 +12,10 @@
         <label for="InputHolidayText">祝日 テキスト</label>
         <input type="text" class="form-control" id="InputHolidayText" name="holiday_text">
     </div>
+    <input name="key" type="hidden" value="">
     
-    <button type="submit" class="btn btn-primary">新規登録・更新</button>
-    <button type="submit" class="btn btn-danger">削除</button>
+    <button type="submit" class="btn btn-primary" name="write">新規登録・更新</button>
+    <button type="submit" class="btn btn-danger" name="delete">削除</button>
 </form>
 
 <a href="{{url_for('show_list')}}" class="btn btn-secondary">一覧出力</a>
