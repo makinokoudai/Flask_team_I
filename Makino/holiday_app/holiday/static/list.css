@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+}
+
+table{
+    height: 70%;
+    margin-top: 30px;
+}
+
+thead, tbody {
+    display: block;
+}
+tbody {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 80%;
+}

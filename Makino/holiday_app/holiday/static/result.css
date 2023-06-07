@@ -1,0 +1,20 @@
+/* rerultの画面スタイル */
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+}
+.result_title{
+    font-size: 1.5rem;
+    border-left: black solid 1px;
+    padding-left: 10px;
+    margin-top: 20px;
+}
+
+.result_message{
+    padding-left: 10px;
+    font-size: 20px;
+}
