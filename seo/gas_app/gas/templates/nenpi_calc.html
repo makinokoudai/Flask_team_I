@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block body %}
+
+<form action="{{url_for('result_nenpi')}}" method="post" class="nenpi-calc" style="margin-top:30px;">
+    <div class="form-group">
+        <label for="InputStart">出発時の総走行距離(km)</label>
+        <input type="number" class="form-control" id="InputStart" name="start">
+    </div>
+
+    <div class="form-group">
+        <label for="InputGoal">到着時の総走行距離(km)</label>
+        <input type="number" class="form-control" id="InputGoal" name="goal">
+    </div>
+
+    <div class="form-group">
+        <label for="InputGas">給油量(L)</label>
+        <input type="number" class="form-control" id="InputGas" name="gas">
+    </div>
+
+    <div class="form-group">
+        <label for="InputPrice">ガソリン単価(円/L)</label>
+        <input type="number" class="form-control" id="InputPrice" name="price">
+    </div>
+    
+    <button type="submit" class="btn btn-primary" name="calc" style="margin-top:20px; margin-right:10px">計算</button>
+</form>
+
+{% endblock %}

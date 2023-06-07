@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">燃費計算の結果</h5>
+        <p class="card-body">
+            {{'{0}km/L、{1}円'.format(nenpi, price)}}<br/>
+            <form action="{{url_for('write_nenpi', nenpi=nenpi, price=price)}}" method="GET">
+                <button type="submit" class="btn btn-secondary">記録する</button>
+            </form>
+        </p>
+    </div>
+</div>
+
+{% endblock %}
+
