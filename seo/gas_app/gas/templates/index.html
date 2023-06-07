@@ -1,7 +1,20 @@
 {% extends "base.html" %}
 {% block body %}
 
-<a href="#">燃費計算</a>
-<a href="#">ガソリン代計算</a>
+{% for gas in gases %}
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{'{0}km/L({1})'.format(gas.nenpi, gas.car)}}</h5>
+        <h6 class="card-subtitle mb-2">{{'{0}km/L、{1}円'.format(gas.nenpi, gas.price)}}</h6>
+        <p class="card-text">{{gas.extra}}</p>
+        </p>
+    </div>
+</div>
+
+{% endfor %}
+
+
+<a href="{{url_for('show_nenpi')}}">燃費計算</a>
 
 {% endblock %}

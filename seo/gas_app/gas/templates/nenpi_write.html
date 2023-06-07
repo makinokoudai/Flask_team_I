@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block body %}
+
+<h5 class="nenpi">{{'{0}km/L、総額{1}円として記録予定'.format(nenpi, price)}}</h5>
+
+<form action="{{url_for('add_nenpi')}}" method="post" class="InputWrite" style="margin-top:30px;">
+    <div class="form-group">
+        <label for="InputCar">車種</label>
+        <input type="text" class="form-control" id="Input" name="car">
+    </div>
+
+    <div class="form-group">
+        <label for="InputExtra">備考</label>
+        <textarea  class="form-control" id="InputExtra" name="extra"></textarea>
+    </div>
+    
+    <input type="hidden" class="form-control" name="nenpi" value="{{nenpi}}">
+    <input type="hidden" class="form-control" name="price" value="{{price}}">
+
+    <button type="submit" class="btn btn-primary" name="write" style="margin-top:20px; margin-right:10px">登録</button>
+</form>
+
+{% endblock %}
