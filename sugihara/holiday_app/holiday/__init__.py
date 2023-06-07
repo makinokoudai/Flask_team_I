@@ -1,6 +1,9 @@
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config.from_object('holiday.config')
 
-from holiday.views import __input__
+db = SQLAlchemy(app)
+
+from holiday.views import __input__,maintenance_date
