@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<form action="{{url_for('add_input')}}" method="post" class="add-input">
+<form action="{{url_for('add_input')}}" method="post" class="add-input" style="margin-top:30px;">
     <div class="form-group">
         <label for="InputHoliday">祝日 日付</label>
         <input type="text" class="form-control" id="InputHoliday" name="holiday">
@@ -14,10 +14,10 @@
     </div>
     <input name="key" type="hidden" value="">
     
-    <button type="submit" class="btn btn-primary" name="write">新規登録・更新</button>
-    <button type="submit" class="btn btn-danger" name="delete">削除</button>
+    <button type="submit" class="btn btn-primary" name="write" style="margin-top:20px; margin-right:10px">新規登録・更新</button>
+    <button type="submit" class="btn btn-danger" name="delete" style="margin-top:20px;">削除</button>
 </form>
 
-<a href="{{url_for('show_list')}}" class="btn btn-secondary">一覧出力</a>
+<a href="{{url_for('show_list')}}" class="btn btn-secondary" style="margin-top:100px;">一覧出力</a>
 
 {% endblock %}
