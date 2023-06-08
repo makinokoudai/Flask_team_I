@@ -1,0 +1,17 @@
+<!-- 결과 화면 -->
+{% extends "layout.html" %}
+<!-- 결과 표시만 할 거니, <form>은 불요 -->
+{% block body %}
+<div class="form-group">
+    <label for="showResult">処理結果</label>
+    {% if whichButton == 'insert' %}
+    <p>{{holiday}}({{holiday_text}})が登録されました</p>
+    {% elif whichButton == 'update' %}
+    <p>{{holiday}}は「{{holiday_text}}」に更新されました</p>
+    {% else %}
+    <p>{{holiday}}({{holiday_text}})は、削除されました</p>
+    {% endif %}
+</div>
+<a href = "{{url_for('show_home')}}" class="btn btn-primary">戻る</a>
+
+{% endblock %}
