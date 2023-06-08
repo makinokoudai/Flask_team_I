@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block body %}
+
+<form action="{{url_for('update_nenpi', id=gas.id)}}" method="post" class="InputEdit" style="margin-top:30px;">
+    <div class="form-group">
+        <label for="InputCar">車種</label>
+        <input type="text" class="form-control" id="Input" name="car" value="{{gas.car}}">
+    </div>
+
+    <div class="form-group">
+        <label for="InputExtra">備考</label>
+        <textarea  class="form-control" id="InputExtra" name="extra">{{gas.extra}}</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="margin-top:10px;">更新</button>
+</form>
+
+{% endblock %}

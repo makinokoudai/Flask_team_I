@@ -45,3 +45,26 @@ def add_nenpi():
     else:
         flash('記録に失敗しました')
         return redirect(url_for('show_entries'))
+    
+@app.route('/nenpi_edit/<int:id>/edit', methods=['GET'])
+def show_edit(id):
+    gas = Gas.query.get(id)
+    return render_template('nenpi_edit.html', gas=gas)
+
+@app.route('/nenpi_edit/<int:id>', methods=['POST'])
+def update_nenpi(id):
+    gas = Gas.query.get(id)
+    gas.car = request.form.get('car')
+    gas.extra = request.form.get('extra')
+    db.session.merge(gas)
+    db.session.commit()
+    flash('記録を編集しました')
+    return redirect(url_for('show_entries'))
+
+@app.route('/<int:id>', methods=['POST'])
+def delete_nenpi(id):
+    gas = Gas.query.get(id)
+    db.session.delete(gas)
+    db.session.commit()
+    flash('記録が削除されました')
+    return redirect(url_for('show_entries'))
