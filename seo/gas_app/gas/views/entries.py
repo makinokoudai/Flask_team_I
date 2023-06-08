@@ -1,10 +1,34 @@
 from flask import render_template, redirect, flash, url_for, request, session
 from gas import app, db
-from gas.models.gases import Gas
+from gas.models.gases import Gas    
+
+
+def check_int(num):
+    if isinstance(num, int) == False:
+        flash('整数を入力してください')
+        return redirect(url_for('show_nenpi'))
+    else:
+        if num < 0:
+            flash('正の整数を入力してください')
+            return redirect(url_for('show_nenpi'))
+        
+def check_brunk(num):
+    if num == '':
+        flash('値を入力してください')
+        redirect(url_for('show_nenpi'))
+    
 
 @app.route('/')
 def show_entries():
     gases = Gas.query.order_by(Gas.created_at.desc()).all()
+    return render_template('index.html', gases=gases)
+
+@app.route('/search', methods=['POST'])
+def search_nenpi():
+    content = request.form.get('search')
+    gases = Gas.query.filter_by(car=content).all()
+    flash('検索結果')
+    print(content)
     return render_template('index.html', gases=gases)
 
 @app.route('/nenpi_calc')
@@ -14,13 +38,17 @@ def show_nenpi():
 @app.route('/nenpi_calc/result', methods=['POST'])
 def result_nenpi():
     if request.method == 'POST':
-        long = int(request.form.get('goal')) - int(request.form.get('start'))
-        gas_l = int(request.form.get('gas'))
-        price = int(request.form.get('price'))
+        if request.form['start'] != '' and request.form['goal'] != '' and request.form['price'] != '' and request.form['gas'] != '':
+            long = int(request.form.get('goal')) - int(request.form.get('start'))
+            gas_l = int(request.form.get('gas'))
+            price = int(request.form.get('price'))
 
-        nenpi = round(long / gas_l, 1)
-        total_price = round(price * gas_l, 0)
-        return render_template('nenpi_calc_result.html', nenpi=nenpi, price=total_price)
+            nenpi = round(long / gas_l, 1)
+            total_price = round(price * gas_l, 0)
+            return render_template('nenpi_calc_result.html', nenpi=nenpi, price=total_price)
+        else:
+            flash('値を入力してください')
+            return redirect(url_for('show_nenpi'))
     else:
         flash('計算に失敗しました')
         return redirect(url_for('show_nenpi'))  #登録失敗後に前の画面に戻るには？

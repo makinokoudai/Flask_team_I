@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block body %}
+
+<!-- <script>
+    function buttonClick() {
+        alert('削除しますか')
+    }
+</script> -->
+
+{% for gas in gases %}
+<p>{{gas.id}}</p>
+
+{% endfor %}
+<p>{{gases.id}}</p>
+{% endblock %}
