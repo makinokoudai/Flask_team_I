@@ -1,0 +1,32 @@
+<!-- 일람 화면 -->
+
+{% extends "layout.html" %}
+{% block body %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>祝日</th>
+            <th>テキスト</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- list.py에서 가져 온 allHolidays를 for문을 돌려 표시 -->
+        {% for eachHoliday in allHolidays %}
+        <tr>
+            <!-- for의 변수.DB에 저장한 변수명 -->
+            <td>{{ eachHoliday.holi_date }}</td>
+            <td>{{ eachHoliday.holi_text }}</td>
+        </tr>
+        <!-- 등록된 휴일이 없으면 No holidays registered라고 표시 -->
+        {% else %}
+        <tr>
+            <td>No holidays registered</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="btn-group">
+    <!-- 뒤로가기 버튼을 누르면 show_home으로 이동 -->
+    <a href = "{{url_for('show_home')}}" class="btn btn-primary" border: none;>戻る</a>
+</div>
+{% endblock %}
