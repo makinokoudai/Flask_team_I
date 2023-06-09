@@ -31,50 +31,75 @@ def new_entry():
         holi_text = request.form.get('holiday_text')
     )
     
-    #受け取った値がNullかを調べる
-    if entry.holi_date != "" and  entry.holi_text !="":
-        print("データあります new")
-        exists_data = Entry.query.filter(Entry.holi_date == entry.holi_date).first()
+    text_len = len(entry.holi_text)
     
-        get_text = Entry.query.filter(Entry.holi_date == entry.holi_date) 
+    get_btn_val = request.form.get('button')
+    
+    # if get_btn_val ==  "delete": #消去ボタンかの判断処理
+    #     if exists_data:
+    #         # db.session.delete(entry)
+    #         rtn_text = f"{entry.holi_date}({entry.holi_text})が削除されました。"
+    #         Entry.query.filter(Entry.holi_date==entry.holi_date).delete()
+    #     else:
+    #         rtn_text = "データが存在しません。"
+        
+    
+    # else :
+        
+    exists_data = Entry.query.filter(Entry.holi_date == entry.holi_date).first()
+    
+    if text_len <= 20:  #受け取った文字が20文字以内か調べる
+        if entry.holi_date != "" and  entry.holi_text !="": #受け取った値がNullかを調べる
             
-        print(get_text)
-            
-        get_btn_val = request.form.get('button')
-            
-            
-        rtn_text =""
-            
-        if get_btn_val == "insert_update":
-            if exists_data:
-                exists_data.holi_date = entry.holi_date
-                exists_data.holi_text = entry.holi_text
-                rtn_text = f"{entry.holi_date}({entry.holi_text})が更新されました。"
-            else:
-                db.session.add(entry)
-                rtn_text = f"{entry.holi_date}({entry.holi_text})が登録されました。"
-            # rtn_message_page = "register_page"    
-        elif get_btn_val == "delete":
-            if exists_data:
-                # db.session.delete(entry)
-                rtn_text = f"{entry.holi_date}({entry.holi_text})が削除されました。"
-                Entry.query.filter(Entry.holi_date==entry.holi_date).delete()
-                
-            else:
-                rtn_text = "データが存在しません。"
-            # rtn_message_page = "delete_data" 
+        
+            # get_text = Entry.query.filter(Entry.holi_date == entry.holi_date) 
                 
 
+            rtn_text =""
             
-        db.session.commit()
+            if text_len <= 20:
+                if get_btn_val == "insert_update":
+                    if exists_data:
+                        exists_data.holi_date = entry.holi_date
+                        exists_data.holi_text = entry.holi_text
+                        rtn_text = f"{entry.holi_date}({entry.holi_text})が更新されました。"
+                    else:
+                        db.session.add(entry)
+                        rtn_text = f"{entry.holi_date}({entry.holi_text})が登録されました。"
+                    # rtn_message_page = "register_page"  
+            
+            else:
+                
+                flash('テキストは20文字以内で入力してください。')
+                return redirect(url_for('show_input'))
+                
+                
+        elif entry.holi_date != "":
+            if get_btn_val == "delete":
+                if exists_data:
+                    # db.session.delete(entry)
+                    rtn_text = f"{entry.holi_date}({entry.holi_text})が削除されました。"
+                    Entry.query.filter(Entry.holi_date==entry.holi_date).delete()
+                else:
+                    rtn_text = "データが存在しません。"
+
+            db.session.commit()
+            
+            
+            return render_template('result.html',text=rtn_text)   
+            
+        else :
+            flash('データが空です。データを入力してください。')
+            return redirect(url_for('show_input'))
         
-        
-        return render_template('result.html',text=rtn_text)   
-        
-    else :
-        # print("データがないです")
-        flash('データが空です。データを入力してください。')
+    
+    else:
+        flash('テキストは20文字以内で入力してください。')
         return redirect(url_for('show_input'))
+        
+        
+    
+
         
 
         
