@@ -8,20 +8,28 @@
     <title>給料計算アプリ</title>
 </head>
 <body>
-    <form action="/output" method="post">
-        <h2>給与計算アプリ</h2>
-        <p>給料</p>
-        {% for message in get_flashed_messages() %}
-        <div class="alert alert-info" role="alert">
-            {{message}}
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="mx-auto" style="width:300px">
+                <form action="/output" method="post">
+                    <h2>給与計算アプリ</h2>
+                    <p>給料</p>
+                    {% for message in get_flashed_messages() %}
+                    <div class="alert alert-info" role="alert">
+                        {{message}}
+                    </div>
+                    {% endfor %}
+                    <input type="number" name="number1">
+                    <div>
+                        <button type="submit" class="btn btn-primary">計算する</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        {% endfor %}
-        <input type="number" name="number1">
-        <div>
-            <button type="submit" class="btn btn-primary">計算する</button>
-        </div>
-        
-    </form>
+        <div class="col-2"></div>
+    </div>
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

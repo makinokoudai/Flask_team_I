@@ -1,0 +1,2 @@
+-- DELETE FROM holiday where holi_text in ("テストの日0102 更新") 
+-- DELETE FROM holiday where holi_text IS NULL
